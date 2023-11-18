@@ -15,10 +15,10 @@ function DatesRow({ date, onDateButtonClick}) {
     <div className="Dates">
       {validDates.map((validDate, index) => (
         <button key={index} onClick={() => handleButtonClick(index)}>
-          {validDate.toDateString()}
+          {validDate.toLocaleDateString('it-IT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </button>
       ))}
-      {selectedDate && <p>Selected Date: {selectedDate.toDateString()}</p>}
+      {selectedDate && <p>Selected Date: {selectedDate.toLocaleDateString('it-IT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>}
     </div>
   );
 }
