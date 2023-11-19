@@ -2,6 +2,7 @@
 import React from 'react';
 import './App.css';
 import DatesList from './DatesList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
