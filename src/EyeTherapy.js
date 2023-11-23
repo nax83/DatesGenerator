@@ -7,6 +7,10 @@ function EyeTherapy({ title, maxInjections }) {
     const [selectedInjections, setSelectedInjections] = useState(0);
     const [injections, setInjections] = useState(Array.from({ length: maxInjections }, (_, i) => ({ id: i, weeks: 0 })));
   
+    const handleDropdownInjectionSelect = (eventKey) => {
+      setSelectedInjections(eventKey);
+    };
+
     const handleDropdownSelect = (eventKey, event) => {
       const selectedId = parseInt(event.target.getAttribute('data-id'));
   
@@ -17,14 +21,12 @@ function EyeTherapy({ title, maxInjections }) {
   
         setInjections(updatedInjections);
       }
-  
-      setSelectedInjections(eventKey);
     };
 
     const injectionsDropdown = injections
     .filter((injection) => injection.id < selectedInjections)
     .map((injection) => (
-      <Dropdown key={injection.id}>
+      <Dropdown key={injection.id} onSelect={handleDropdownSelect}>
         <Dropdown.Toggle variant="success" id={`dropdown-injection-${injection.id}`}>
           Injection {injection.id + 1}: Wait for {injection.weeks} weeks
         </Dropdown.Toggle>
@@ -34,7 +36,6 @@ function EyeTherapy({ title, maxInjections }) {
               key={week}
               eventKey={week}
               data-id={injection.id}
-              onSelect={handleDropdownSelect}
             >
               {week} weeks
             </Dropdown.Item>
@@ -47,7 +48,7 @@ function EyeTherapy({ title, maxInjections }) {
     <Card>
       <Card.Header>{title}</Card.Header>
       <Card.Body>
-        <Dropdown onSelect={handleDropdownSelect}>
+        <Dropdown onSelect={handleDropdownInjectionSelect}>
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
             Number of Injections: {selectedInjections}
           </Dropdown.Toggle>
