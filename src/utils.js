@@ -3,6 +3,37 @@ function weeksToDays(numberOfWeeks) {
   return numberOfWeeks * 7 + 1;
 }
 
+function updateArray(arr, num) {
+  const currentLength = arr.length;
+
+  if (num > currentLength) {
+    const additionalElements = num - currentLength;
+    for (let i = 0; i < additionalElements; ++i) {
+      const elemLength = currentLength + i;
+      arr.push({ id: elemLength, weeks: 0 });
+    }
+  } else if (num < currentLength) {
+    arr.splice(num);
+  }
+  return arr;
+}
+
+function combineDates(arr1, arr2) {
+  const combinedDates = [];
+  const maxLength = Math.max(arr1.length, arr2.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    if (i < arr1.length) {
+      combinedDates.push(arr1[i]);
+    }
+    if (i < arr2.length) {
+      combinedDates.push(arr2[i]);
+    }
+  }
+
+  return combinedDates;
+}
+
 function getNextValidDates(inputDate, numberOfDates = 3, minWeeks = 4) {
   const daysToCheck = [2, 3, 4]; // Tuesday, Wednesday, Thursday represented as 2, 3, 4 (respectively)
   const minDays = weeksToDays(minWeeks); // Convert minWeeks to minDays
@@ -27,5 +58,5 @@ function getNextValidDates(inputDate, numberOfDates = 3, minWeeks = 4) {
   return validDates;
 }
   
-export { getNextValidDates, weeksToDays };
+export { getNextValidDates, weeksToDays, updateArray, combineDates };
   

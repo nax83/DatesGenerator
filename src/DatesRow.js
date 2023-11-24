@@ -5,9 +5,9 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function DatesRow({ date, onDateButtonClick}) {
+function DatesRow({ date, minWeeks, onDateButtonClick}) {
   const [selectedDate, setSelectedDate] = useState(null);
-  const validDates = getNextValidDates(date, 3);
+  const validDates = getNextValidDates(date, 3, minWeeks);
 
   const handleButtonClick = (value) => {
     setSelectedDate(validDates[value]);

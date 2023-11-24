@@ -1,14 +1,18 @@
 // DatesList.js
 import React, { useState } from 'react';
-import DatesRow from './DatesRow'; // Updated import
+import DatesRow from './DatesRow';
+import { combineDates } from './utils';
 
 function DatesList() {
-  const initialDate = new Date();
-  const [datesList, setDatesList] = useState([{ id: Math.random(), next: null, date: initialDate }]);
+
+  const [datesList, setDatesList] = useState([]);
+
+  const updateDatesList = (injections) => {
+    console.log(injections);
+  }
 
   const handleDateButtonClick = (index, selectedDate) => {
-    
-    console.log(selectedDate);
+
     const newDatesList = [...datesList];
 
     if (!newDatesList[index]?.next) {
@@ -42,6 +46,7 @@ function DatesList() {
         <DatesRow
           key={dates.id}
           date={dates.date}
+          minWeeks={dates.minWeeks}
           onDateButtonClick={(selectedDate) => handleDateButtonClick(index, selectedDate)}
         />
       ))}
