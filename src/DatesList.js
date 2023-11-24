@@ -3,13 +3,9 @@ import React, { useState } from 'react';
 import DatesRow from './DatesRow';
 import { combineDates } from './utils';
 
-function DatesList() {
+function DatesList({injectionsData}) {
 
   const [datesList, setDatesList] = useState([]);
-
-  const updateDatesList = (injections) => {
-    console.log(injections);
-  }
 
   const handleDateButtonClick = (index, selectedDate) => {
 
